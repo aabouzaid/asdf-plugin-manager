@@ -9,6 +9,7 @@ permissions:
   actions: write
   contents: write
   pull-requests: write
+  issues: write
 
 jobs:
   release-please:
@@ -17,7 +18,8 @@ jobs:
       - uses: GoogleCloudPlatform/release-please-action@v4
         id: release
         with:
-          release-type: simple
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
       - name: Upload Release Artifact
         if: ${{ steps.release.outputs.release_created }}
